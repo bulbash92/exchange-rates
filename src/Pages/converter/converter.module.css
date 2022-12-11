@@ -1,0 +1,25 @@
+.converter {
+    display: flex;
+    max-width: 80vw;
+    padding: 20px 50px;
+    justify-content: center;
+}
+
+.container {
+
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.inputContainer {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.select {
+    margin-top: 10px;
+    width: 100px;
+}
