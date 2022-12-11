@@ -106,7 +106,6 @@ const Converter = () => {
                         className={styles.select}
                         isSearchable={true}
                         name="Валюта"
-                        // defaultValue={currencyBottom}
                         options={currencyList}
                     />
                     <Input
