@@ -1,123 +1,123 @@
 import React, {useEffect, useState} from 'react';
-import styles from './converter.module.css'
 import Select from "react-select";
 import {CurrencyApi} from "../../api/api";
 import Input from "../../components/Input/input";
+import styles from './converter.module.css';
 
 const Converter = () => {
-    const [currencyList, setCurrencyList] = useState([])
-    const [currencyTop, setCurrencyTop] = useState({
-        label: '',
-        rate: '',
-        scale: ''
+  const [currencyList, setCurrencyList] = useState([])
+  const [currencyTop, setCurrencyTop] = useState({
+    label: '',
+    rate: '',
+    scale: ''
+  })
+
+  const [inputTop, setInputTop] = useState(0)
+  const [currencyBottom, setCurrencyBottom] = useState({
+    label: '',
+    rate: '',
+    scale: ''
+  })
+  const [inputBottom, setInputBottom] = useState(0)
+
+  const isDisabled = currencyTop.label === '' || currencyBottom.label === ''
+
+  const getCurrencyRateListHandler = async () => {
+    try {
+      const data = await CurrencyApi.getCurrencyListHandler()
+      const newCurrencyList = data.map(d => ({
+        label: d.Cur_Abbreviation,
+        value: d.Cur_OfficialRate,
+        scale: d.Cur_Scale,
+      }))
+      const result = [{label: 'BYN', value: 1, scale: 1}, ...newCurrencyList];
+      setCurrencyList(result);
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const onChangeSelectTop = (e) => {
+    setCurrencyTop({...currencyTop, label: e.label, rate: e.value, scale: e.scale,})
+  }
+
+  const onChangeSelectBottom = (e) => {
+    setCurrencyBottom({
+      ...currencyBottom,
+      label: e.label,
+      rate: e.value,
+      scale: e.scale
     })
+  }
 
-    const [inputTop, setInputTop] = useState(0)
-    const [currencyBottom, setCurrencyBottom] = useState({
-        label: '',
-        rate: '',
-        scale: ''
-    })
-    const [inputBottom, setInputBottom] = useState(0)
 
-    const isDisabled = currencyTop.label === '' || currencyBottom.label === ''
-
-    const getCurrencyRateListHandler = async () => {
-        try {
-            const data = await CurrencyApi.getCurrencyListHandler()
-            const newCurrencyList = data.map(d => ({
-                label: d.Cur_Abbreviation,
-                value: d.Cur_OfficialRate,
-                scale: d.Cur_Scale,
-            }))
-            const result = [{label: 'BYN', value: 1, scale: 1}, ...newCurrencyList];
-            setCurrencyList(result);
-        } catch (e) {
-            console.log(e)
-        }
+  const onChangeTopInput = (e) => {
+    const target = e.currentTarget.value.replace(/[^\d.]/g, '')
+    setInputTop(target)
+    if (currencyBottom === currencyTop) {
+      return setInputBottom(target)
     }
-
-    const onChangeSelectTop = (e) => {
-        setCurrencyTop({...currencyTop, label: e.label, rate: e.value, scale: e.scale,})
+    const currencyToCurrency = +((target * currencyTop.rate / currencyTop.scale) / (currencyBottom.rate / currencyBottom.scale)).toFixed(2)
+    if (isNaN(currencyToCurrency)) {
+      return setInputBottom('')
     }
+    setInputBottom(currencyToCurrency)
+  }
 
-    const onChangeSelectBottom = (e) => {
-        setCurrencyBottom({
-            ...currencyBottom,
-            label: e.label,
-            rate: e.value,
-            scale: e.scale
-        })
+  const onChangeBottomInput = (e) => {
+    const target = e.currentTarget.value.replace(/[^\d.]/g, '')
+    setInputBottom(target)
+    if (currencyBottom === currencyTop) {
+      return setInputTop(target)
     }
-
-
-    const onChangeTopInput = (e) => {
-        const target = e.currentTarget.value.replace(/[^\d.]/g, '')
-        setInputTop(target)
-        if (currencyBottom === currencyTop) {
-            return setInputBottom(target)
-        }
-        const currencyToCurrency = +((target * currencyTop.rate / currencyTop.scale) / (currencyBottom.rate / currencyBottom.scale)).toFixed(2)
-        if(isNaN(currencyToCurrency)) {
-          return  setInputBottom('')
-        }
-        setInputBottom(currencyToCurrency)
+    const currencyToCurrency = +((target * currencyBottom.rate / currencyBottom.scale) / (currencyTop.rate / currencyTop.scale)).toFixed(2)
+    if (isNaN(currencyToCurrency)) {
+      return setInputBottom('')
     }
+    setInputTop(currencyToCurrency)
+  }
 
-    const onChangeBottomInput = (e) => {
-        const target = e.currentTarget.value.replace(/[^\d.]/g, '')
-        setInputBottom(target)
-        if (currencyBottom === currencyTop) {
-            return setInputTop(target)
-        }
-        const currencyToCurrency = +((target * currencyBottom.rate / currencyBottom.scale) / (currencyTop.rate / currencyTop.scale)).toFixed(2)
-        if(isNaN(currencyToCurrency)) {
-            return  setInputBottom('')
-        }
-        setInputTop(currencyToCurrency)
-    }
+  useEffect(() => {
+    getCurrencyRateListHandler()
+  }, [])
 
-    useEffect(() => {
-        getCurrencyRateListHandler()
-    }, [])
-
-    return (
-        <div className={styles.converter}>
-            <div className={styles.container}>
-                <h2 className={styles.title}>Конвертер валют</h2>
-                <div className={styles.inputContainer}>
-                    <Select
-                        onChange={onChangeSelectTop}
-                        className={styles.select}
-                        classNamePrefix="Валюта"
-                        isSearchable={true}
-                        name="Валюта"
-                        options={currencyList}
-                    />
-                    <Input
-                        type={'tel'}
-                        disabled={isDisabled}
-                        onChange={onChangeTopInput}
-                        value={inputTop}/>
-                </div>
-                <div className={styles.inputContainer}>
-                    <Select
-                        onChange={onChangeSelectBottom}
-                        className={styles.select}
-                        isSearchable={true}
-                        name="Валюта"
-                        options={currencyList}
-                    />
-                    <Input
-                        disabled={isDisabled}
-                        onChange={onChangeBottomInput}
-                        value={inputBottom}
-                        type={'tel'}
-                    />
-                </div>
-            </div>
+  return (
+    <div className={styles.converter}>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Конвертер валют</h2>
+        <div className={styles.inputContainer}>
+          <Select
+            onChange={onChangeSelectTop}
+            className={styles.select}
+            classNamePrefix="Валюта"
+            isSearchable={true}
+            name="Валюта"
+            options={currencyList}
+          />
+          <Input
+            type={'tel'}
+            disabled={isDisabled}
+            onChange={onChangeTopInput}
+            value={inputTop}/>
         </div>
-    );
+        <div className={styles.inputContainer}>
+          <Select
+            onChange={onChangeSelectBottom}
+            className={styles.select}
+            isSearchable={true}
+            name="Валюта"
+            options={currencyList}
+          />
+          <Input
+            disabled={isDisabled}
+            onChange={onChangeBottomInput}
+            value={inputBottom}
+            type={'tel'}
+          />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Converter;
