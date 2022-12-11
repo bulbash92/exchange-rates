@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import styles from './exchangeRates.module.css'
 import CurrencyTable from "./currencyTable";
 import Input from "../../components/Input/input";
@@ -14,20 +14,17 @@ const ExchangeRates = () => {
         setDate(e.currentTarget.value)
     }
 
-    const onClickGetCurrencyRateHandler = useCallback(async () => {
+    const onClickGetCurrencyRateHandler = async () => {
         try {
             setDisabled(true)
             const data = await CurrencyApi.getCurrencyListHandler(date)
             setCurrencyList(data)
             setDisabled(false)
-
         } catch (e) {
             setDisabled(false)
             console.log(e)
-
         }
-
-    }, [date])
+    }
 
     //
     useEffect(() => {
@@ -40,7 +37,7 @@ const ExchangeRates = () => {
             <div className={styles.content}>
                 <h2>Курсы валют</h2>
                 <div className={styles.header}>
-                    <Input  onChange={onChangeDateHandler} value={date} type={'date'}/>
+                    <Input onChange={onChangeDateHandler} value={date} type={'date'}/>
                     <Button
                         onClick={onClickGetCurrencyRateHandler}
                         value={'Получить'}
