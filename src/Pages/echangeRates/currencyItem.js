@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import styles from './exchangeRates.module.css'
 
 const CurrencyItem = ({currency = '', rate = '', scale = ''}) => {
@@ -13,4 +13,4 @@ const CurrencyItem = ({currency = '', rate = '', scale = ''}) => {
   );
 };
 
-export default CurrencyItem;
+export default memo(CurrencyItem);
