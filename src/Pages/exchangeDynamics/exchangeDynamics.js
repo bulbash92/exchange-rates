@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 
 import Select from 'react-select';
 
@@ -11,8 +11,8 @@ import Chart from "../../components/chart/chart";
 
 const ExchangeDynamics = () => {
 
-    const [startDate, setStartDate] = useState(null)
-    const [endDate, setEndDate] = useState(null)
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
     const [dynamic, setDynamic] = useState([])
     const [checkCurrency, setCheckCurrency] = useState('')
     const [currencyList, setCurrencyList] = useState([])
