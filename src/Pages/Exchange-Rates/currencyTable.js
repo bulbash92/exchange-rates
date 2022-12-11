@@ -15,6 +15,7 @@ const CurrencyTable = ({currencyList = []}) => {
                 currencyList.map(item => <CurrencyItem
                     key={item.Cur_ID}
                     currency={item.Cur_Name}
+                    scale={item.Cur_Scale > 1&&item.Cur_Scale}
                     rate={item.Cur_OfficialRate}
                 />)}
             </div>

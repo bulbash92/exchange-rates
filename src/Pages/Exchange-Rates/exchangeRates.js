@@ -7,7 +7,7 @@ import {CurrencyApi} from '../../api/api'
 
 const ExchangeRates = () => {
     const [currencyList, setCurrencyList] = useState(null)
-    const [date, setDate] = useState(null)
+    const [date, setDate] = useState('')
     const [disabled, setDisabled] = useState(false)
 
     const onChangeDateHandler = (e) => {

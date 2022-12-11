@@ -50,3 +50,8 @@
     color: #14509c;
     font-weight: bold;
 }
+
+.currencyScale {
+    font-size: 12px;
+    margin-left: 3px;
+}
