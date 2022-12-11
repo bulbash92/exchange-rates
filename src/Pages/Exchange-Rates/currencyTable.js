@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './exchangeRates.module.css'
 import CurrencyItem from "./currencyItem";
 
@@ -16,7 +17,6 @@ const CurrencyTable = ({currencyList = []}) => {
                     currency={item.Cur_Name}
                     rate={item.Cur_OfficialRate}
                 />)}
-
             </div>
         </div>
     );

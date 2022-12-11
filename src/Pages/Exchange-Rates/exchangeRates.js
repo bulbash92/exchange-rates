@@ -1,8 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import styles from './exchangeRates.module.css'
 import CurrencyTable from "./currencyTable";
-import InputDate from "../../components/inputDate/inputDate";
+import Input from "../../components/Input/input";
 import Button from "../../components/button/button";
+import {CurrencyApi} from '../../api/api'
 
 const ExchangeRates = () => {
     const [currencyList, setCurrencyList] = useState(null)
@@ -10,40 +11,44 @@ const ExchangeRates = () => {
     const [disabled, setDisabled] = useState(false)
 
     const onChangeDateHandler = (e) => {
-        console.log(e.currentTarget.value)
         setDate(e.currentTarget.value)
     }
 
-    const getCurrencyListHandler = async (checkDate) => {
+    const onClickGetCurrencyRateHandler = useCallback(async () => {
         try {
             setDisabled(true)
-            const response = await fetch(`https://www.nbrb.by/api/exrates/rates?ondate=${checkDate}&periodicity=0`)
-            // const response = await fetch(`https://www.nbrb.by/api/exrates/rates?periodicity=0`)
-            const data = await response.json()
+            const data = await CurrencyApi.getCurrencyListHandler(date)
             setCurrencyList(data)
             setDisabled(false)
+
         } catch (e) {
             setDisabled(false)
             console.log(e)
-        }
-    }
 
-    const onClickGetCurrencyRateHandler = useCallback(() => {
-        getCurrencyListHandler(date)
+        }
+
     }, [date])
 
     //
     useEffect(() => {
-        getCurrencyListHandler(date)
+        onClickGetCurrencyRateHandler()
     }, [])
 
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
-                <InputDate type={'date'} onChange={(e) => onChangeDateHandler(e)}/>
-                <Button onClick={onClickGetCurrencyRateHandler} value={'Получить'} disabled={disabled}/>
+
+            <div className={styles.content}>
+                <h2>Курсы валют</h2>
+                <div className={styles.header}>
+                    <Input  onChange={onChangeDateHandler} value={date} type={'date'}/>
+                    <Button
+                        onClick={onClickGetCurrencyRateHandler}
+                        value={'Получить'}
+                        disabled={disabled}
+                    />
+                </div>
+                <CurrencyTable currencyList={currencyList}/>
             </div>
-            <CurrencyTable currencyList={currencyList}/>
         </div>
     );
 };

@@ -1,28 +1,38 @@
 .container {
     padding: 20px 50px;
+    max-width: 80vw;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+
+.content {
+
 }
 
 .header {
     display: flex;
-    width: 35vw;
     justify-content: space-between;
 }
 
 .table {
-    background-color: cadetblue;
+    background-color: #efedd5;
     width: 35vw;
+    padding: 10px;
 }
 
 .headerTable {
     display: flex;
     padding: 2px 10px;
     justify-content: space-between;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #FFA500;
 
 }
 
 .headerTableItem {
-    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .currencyItem {
@@ -33,4 +43,10 @@
 
 .item {
     text-align: left;
+    /*color: #0e1829;*/
+}
+
+.currency {
+    color: #14509c;
+    font-weight: bold;
 }
