@@ -3,13 +3,10 @@
     max-width: 80vw;
     padding: 20px 50px;
     justify-content: center;
-}
-
-.container {
-    width: 70vw;
-    border-radius: 4px;
+    margin: 20px auto 0 auto;
+    border-radius: 5px;
     background-color: #FAFAFA;
-    padding: 10px 0 50px 0;
+    height: 70vh;
 }
 
 .title {

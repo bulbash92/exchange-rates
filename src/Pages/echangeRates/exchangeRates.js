@@ -33,7 +33,7 @@ const ExchangeRates = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.content}>
+      <div>
         <h2>Курсы валют</h2>
         <div className={styles.header}>
           <Input onChange={onChangeDateHandler} value={date} type={'date'}/>

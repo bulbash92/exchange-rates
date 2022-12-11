@@ -79,7 +79,7 @@ const Converter = () => {
 
   return (
     <div className={styles.converter}>
-      <div className={styles.container}>
+      <div>
         <h2 className={styles.title}>Конвертер валют</h2>
         <div className={styles.inputContainer}>
           <Select
