@@ -1,0 +1,29 @@
+.button {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    min-height: 5vh;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /*padding: 8px 4px;*/
+    background-color: crimson;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.title {
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.button:hover {
+    background-color: darkred;
+}
