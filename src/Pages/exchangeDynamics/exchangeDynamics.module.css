@@ -1,0 +1,21 @@
+.dynamic {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.container {
+    display: flex;
+    max-width: 80vw;
+    justify-content: center;
+    padding: 20px;
+    background-color: #FAFAFA;
+    border-radius: 4px;
+    margin-top: 10px;
+    gap: 5vw;
+}
+
+.inputContainer {
+    text-align: initial;
+}
+
