@@ -9,14 +9,14 @@ const Navbar = () => {
 
   return (
     <nav className={styles.container}>
-      <div className={styles.item}><NavLink to={'/'}
-                                            className={linkClassName}>Курсы </NavLink>
+      <div className={styles.item}>
+        <NavLink to={'/'} className={linkClassName}>Курсы </NavLink>
       </div>
-      <div className={styles.item}><NavLink to={'/dynamic'}
-                                            className={linkClassName}>Динамика</NavLink>
+      <div className={styles.item}>
+        <NavLink to={'/dynamic'} className={linkClassName}>Динамика</NavLink>
       </div>
-      <div className={styles.item}><NavLink to={'/converter'}
-                                            className={linkClassName}>Конвертер</NavLink>
+      <div className={styles.item}>
+        <NavLink to={'/converter'} className={linkClassName}>Конвертер</NavLink>
       </div>
     </nav>
   );
