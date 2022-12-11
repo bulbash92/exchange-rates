@@ -24,13 +24,8 @@ const ExchangeDynamics = () => {
 
   const getDynamicsExchangeHandler = async () => {
     try {
-      const data = await CurrencyApi.getDynamicsExchange(checkCurrency, startDate, endDate)
-      const newDynamicDate = data.map(d => ({
-        name: d.Date.slice(0, 10),
-        rate: d.Cur_OfficialRate,
-      }))
-      setDynamic(newDynamicDate)
-
+      const data = await CurrencyApi.getDynamicsExchange(431, startDate, endDate)
+      setDynamic(data)
     } catch (e) {
       console.log(e)
     }
@@ -39,8 +34,7 @@ const ExchangeDynamics = () => {
   const onClickGetCurrencyRateHandler = async () => {
     try {
       const data = await CurrencyApi.getCurrencyListHandler()
-      const newCurrencyList = data.map(d => ({label: d.Cur_Name, value: d.Cur_ID}))
-      setCurrencyList(newCurrencyList)
+      setCurrencyList(data)
     } catch (e) {
       console.log(e)
     }
@@ -66,9 +60,7 @@ const ExchangeDynamics = () => {
             <Select
               onChange={onChangeCurrencyHandler}
               className="basic-single"
-              classNamePrefix="Валюта"
               isSearchable={true}
-              name="Валюта"
               placeholder={'Валюта'}
               options={currencyList}
             />

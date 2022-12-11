@@ -5,6 +5,7 @@ import Input from "../../components/Input/input";
 import styles from './converter.module.css';
 
 const Converter = () => {
+
   const [currencyList, setCurrencyList] = useState([])
   const [currencyTop, setCurrencyTop] = useState({
     label: '',
@@ -25,12 +26,7 @@ const Converter = () => {
   const getCurrencyRateListHandler = async () => {
     try {
       const data = await CurrencyApi.getCurrencyListHandler()
-      const newCurrencyList = data.map(d => ({
-        label: d.Cur_Abbreviation,
-        value: d.Cur_OfficialRate,
-        scale: d.Cur_Scale,
-      }))
-      const result = [{label: 'BYN', value: 1, scale: 1}, ...newCurrencyList];
+      const result = [{label: 'BYN', value: 1, scale: 1}, ...data];
       setCurrencyList(result);
     } catch (e) {
       console.log(e)

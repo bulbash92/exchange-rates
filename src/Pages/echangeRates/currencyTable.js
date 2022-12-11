@@ -14,10 +14,10 @@ const CurrencyTable = ({currencyList = []}) => {
       <div className={styles.tableBody}>
         {currencyList &&
         currencyList.map(item => <CurrencyItem
-          key={item.Cur_ID}
-          currency={item.Cur_Name}
-          scale={item.Cur_Scale > 1 && item.Cur_Scale}
-          rate={item.Cur_OfficialRate}
+          key={item.value}
+          currency={item.name}
+          scale={item.scale > 1 && item.scale}
+          rate={item.value}
         />)}
       </div>
     </div>

@@ -9,7 +9,12 @@ import {
   Tooltip
 } from "recharts";
 
-const Chart = ({data = [], width = 600, height = 400, margin = {}}) => {
+const Chart = ({
+                 data = [],
+                 width = 600,
+                 height = 400,
+                 margin = {},
+               }) => {
 
   return (
     <>
@@ -24,7 +29,7 @@ const Chart = ({data = [], width = 600, height = 400, margin = {}}) => {
         <YAxis/>
         <Tooltip/>
         <Legend/>
-        <Bar dataKey={'курс'} fill={'#B0C4DE'}/>
+        <Bar dataKey={'rate'} fill={'#B0C4DE'}/>
       </BarChart>
     </>
   );

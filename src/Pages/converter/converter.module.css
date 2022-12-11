@@ -6,7 +6,10 @@
 }
 
 .container {
-
+    width: 70vw;
+    border-radius: 4px;
+    background-color: #FAFAFA;
+    padding: 10px 0 50px 0;
 }
 
 .title {
