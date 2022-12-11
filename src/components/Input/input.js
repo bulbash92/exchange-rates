@@ -1,10 +1,11 @@
 import React from 'react';
-import styles from './inputDate.module.css'
+import styles from './input.module.css'
 
-const InputDate = ({onChange = () => {}, value=''}) => {
+const Input = ({onChange = () => {}, value= '', ...props}) => {
+    console.log('Input', value);
     return (
-        <input type={'date'} value={value} onChange={onChange} className={styles.input}/>
+        <input value={value} onChange={onChange} className={styles.input} {...props}/>
     );
 };
 
-export default InputDate;
+export default Input;
