@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import Select from 'react-select';
 
 import styles from './exchangeDynamics.module.css'
-import Input from "../../components/Input/input";
+import Input from "../../components/input/input";
 import Button from "../../components/button/button";
 import {CurrencyApi} from '../../api/api'
 import Chart from "../../components/chart/chart";

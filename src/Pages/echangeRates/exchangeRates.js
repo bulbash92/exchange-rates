@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from './exchangeRates.module.css'
 import CurrencyTable from "./currencyTable";
-import Input from "../../components/Input/input";
+import Input from "../../components/input/input";
 import Button from "../../components/button/button";
 import {CurrencyApi} from '../../api/api'
 

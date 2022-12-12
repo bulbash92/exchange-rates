@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Select from "react-select";
 import {CurrencyApi} from "../../api/api";
-import Input from "../../components/Input/input";
+import Input from "../../components/input/input";
 import styles from './converter.module.css';
 
 const Converter = () => {
