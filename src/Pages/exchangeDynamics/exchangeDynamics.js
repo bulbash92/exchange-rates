@@ -24,7 +24,7 @@ const ExchangeDynamics = () => {
 
   const getDynamicsExchangeHandler = async () => {
     try {
-      const data = await CurrencyApi.getDynamicsExchange(431, startDate, endDate)
+      const data = await CurrencyApi.getDynamicsExchange(checkCurrency, startDate, endDate)
       setDynamic(data)
     } catch (e) {
       console.log(e)
