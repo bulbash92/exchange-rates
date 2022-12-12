@@ -23,6 +23,7 @@ export const CurrencyApi = {
         value: d.Cur_OfficialRate,
         scale: d.Cur_Scale,
         name: d.Cur_Name,
+        id: d.Cur_ID,
       }))
     } catch (error) {
       console.log(error)

@@ -18,7 +18,7 @@ const ExchangeDynamics = () => {
   const [currencyList, setCurrencyList] = useState([])
 
   const onChangeCurrencyHandler = (e) => {
-    setCheckCurrency(e.value)
+    setCheckCurrency(e.id)
   }
 
 
